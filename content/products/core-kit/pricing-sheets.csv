@@ -1,0 +1,21 @@
+trade,service,unit,suggested_min_rate_usd,suggested_target_rate_usd,notes
+cleaning,standard_home_clean,job,120,180,2br/2ba baseline; add rooms
+cleaning,deep_clean,job,220,350,First visit or move-out
+cleaning,hourly_addon,hour,45,65,After included scope
+handyman,service_call_minimum,job,95,150,Includes first 30-45 min
+handyman,hourly_labor,hour,65,95,Materials separate
+handyman,tv_mount_basic,job,100,175,Mount not included unless listed
+lawn_care,weekly_mow_small_lot,visit,35,55,Under 5k sq ft typical
+lawn_care,weekly_mow_medium_lot,visit,55,85,5k-10k sq ft
+lawn_care,seasonal_cleanup,job,150,300,Bag/spring leaf and bed work
+pressure_washing,driveway_1_car,job,150,250,Oil stain surcharge possible
+pressure_washing,house_soft_wash_1_story,job,250,450,Exclude roof unless rated
+pressure_washing,fleet_or_equipment,hour,75,120,Commercial rate
+hvac_helper,helper_hourly,hour,35,55,Under licensed tech direction
+hvac_helper,filter_change_visit,job,40,75,Filters billed separate
+detailing,interior_only_sedan,job,125,200,Pet hair surcharge
+detailing,full_detail_sedan,job,200,350,Paint correction separate
+detailing,mobile_travel_fee,job,25,50,Beyond free radius
+general,same_day_rush,percent,20,35,Percent on labor
+general,after_hours,percent,25,50,Percent on labor
+general,cancellation_under_2h,flat,50,100,Or percent of job

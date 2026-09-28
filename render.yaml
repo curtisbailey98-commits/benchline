@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: benchline
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run pack:core-kit && npm run build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: STRIPE_PRICE_CORE
+        sync: false
+      - key: STRIPE_PRICE_MEMBERSHIP
+        sync: false
+      - key: STRIPE_PRICE_BUNDLE
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: FOUNDER_EMAIL
+        sync: false
+      - key: DOWNLOAD_SIGNING_SECRET
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false
