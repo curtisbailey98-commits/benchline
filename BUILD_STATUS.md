@@ -49,6 +49,6 @@
 
 ## Notes
 
-- `render.yaml` still says `plan: starter`; the live service was created manually on the **free** plan (cold starts after ~15 min idle).
+- `render.yaml` now uses `plan: free` to match the live service (free plan spins down after ~15 min idle; first request is slow).
 - Bundle is a **one-time** Stripe price ($249). Updates alone uses Checkout `subscription` mode.
 - Kaivaryn repo/service/Stripe link/Supabase project were not touched.
