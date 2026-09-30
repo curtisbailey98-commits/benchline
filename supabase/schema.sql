@@ -175,3 +175,6 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- Trigger-only function: not callable via PostgREST RPC (Supabase advisor 0028/0029)
+revoke execute on function public.handle_new_user() from public, anon, authenticated;

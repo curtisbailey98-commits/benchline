@@ -75,7 +75,8 @@ export async function GET(request: Request, { params }: Params) {
     return NextResponse.json({ error: "Not entitled to this download" }, { status: 403 });
   }
 
-  const zipPath = path.join(process.cwd(), "public", "downloads", meta.zipName);
+  // Paid files live outside public/ so they are never statically served.
+  const zipPath = path.join(process.cwd(), "private", "downloads", meta.zipName);
   if (!fs.existsSync(zipPath)) {
     return NextResponse.json({ error: "File missing — run npm run pack:core-kit" }, { status: 404 });
   }

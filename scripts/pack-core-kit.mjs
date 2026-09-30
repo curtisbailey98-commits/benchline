@@ -5,8 +5,9 @@ import { ZipArchive } from "archiver";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
-const src = path.join(root, "public/downloads/core-kit");
-const outPath = path.join(root, "public/downloads/benchline-core-kit.zip");
+const src = path.join(root, "content/products/core-kit");
+// Kept outside public/ so the paid ZIP is only served via the auth-gated API route.
+const outPath = path.join(root, "private/downloads/benchline-core-kit.zip");
 
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 

@@ -80,8 +80,8 @@ stripe listen --forward-to localhost:3000/api/webhooks/stripe
 
 ## Digital delivery
 
-- Core Kit files live in `content/products/core-kit/` and `public/downloads/core-kit/`.
-- `npm run pack:core-kit` builds `public/downloads/benchline-core-kit.zip`.
+- Core Kit source files live in `content/products/core-kit/` (never in `public/`, which is served statically).
+- `npm run pack:core-kit` builds `private/downloads/benchline-core-kit.zip` (outside `public/`, only served by the gated API route).
 - After a verified webhook marks an order `paid`, the buyer’s `/account` page shows download links to `/api/downloads/core-kit?orderId=…` (auth + entitlement check).
 
 ## Founder dashboard
@@ -125,6 +125,6 @@ app/                 # App Router pages + API routes
 components/          # UI + cart provider
 lib/                 # products, pricing, stripe, supabase, webhook, analyst
 content/products/    # Source kit content (owned)
-public/downloads/    # Gated ZIP + unpacked kit mirror
+private/downloads/   # Gated ZIP (served only via /api/downloads)
 supabase/schema.sql  # DB migration
 ```

@@ -45,7 +45,7 @@ export function verifyDownloadToken(
 
 export const DOWNLOADABLE_PRODUCTS: Record<string, { dir: string; zipName: string }> = {
   "core-kit": {
-    dir: "downloads/core-kit",
+    dir: "content/products/core-kit",
     zipName: "benchline-core-kit.zip",
   },
 };

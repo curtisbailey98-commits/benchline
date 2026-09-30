@@ -1,44 +1,54 @@
 # Benchline BUILD_STATUS
 
-**Date:** Sunday Sep 27, 2026 (America/New_York)  
+**Last updated:** Tuesday Sep 29, 2026, ~10:45 PM ET  
 **Path:** `/workspace/project-30k/benchline`  
-**Repo target:** `curtisbailey98-commits/benchline` (create/push separately)
+**Repo:** `curtisbailey98-commits/benchline` (branch `main`)
 
-## Done
+## Live infrastructure
 
-- [x] Next.js App Router scaffold (TypeScript, Tailwind, ESLint, `@/*`)
-- [x] Brand UI: dark charcoal + warm amber, Geist fonts, SVG `Logo` component
-- [x] Homepage: USP, products, how it works, FAQ (no fake testimonials/counts)
-- [x] `/shop` catalog + `/shop/[slug]` PDPs with Core Kit upsells
-- [x] Cart (React context + localStorage) + abandoned-cart email capture w/ consent
-- [x] Stripe Checkout API (`/api/checkout`) — multi-line; one-time + recurring via env price IDs
-- [x] `/success` + `/cancel` pages
-- [x] Stripe webhook (`/api/webhooks/stripe`) — signature verify, idempotent `stripe_events`, order + items
-- [x] Supabase schema SQL (`supabase/schema.sql`) — products, prices, customers, orders, order_items, stripe_events, profiles, support_tickets, cart_abandonment
-- [x] Auth pages — magic link + email/password via Supabase; `/auth/callback`
-- [x] `/account` order history (real DB when configured; empty state otherwise)
-- [x] `/dashboard` founder KPIs + tickets + AI analyst (OpenAI if key set, else rule-based from real aggregates)
-- [x] Policies: privacy, refunds, digital delivery; contact form → `support_tickets`
-- [x] Original Core Kit content under `content/products/core-kit/` + mirror + ZIP in `public/downloads/`
+| Piece | Status | Details |
+|-------|--------|---------|
+| GitHub | Pushed | `curtisbailey98-commits/benchline` @ `main` (deployed commit `60d6f3f`) |
+| Render | **Live** (free plan, Virginia) | Service `srv-dau7am7avr4c738088og` → https://benchline.onrender.com — autoDeploy on `main` |
+| Supabase | **ACTIVE_HEALTHY** (free, us-east-1) | Project ref `iwgsxwvtjgtryntacrsv` → https://iwgsxwvtjgtryntacrsv.supabase.co — `supabase/schema.sql` applied (9 tables, RLS on, seed products/prices) |
+| Stripe | **Blocked** | Product/price creation failed: the Stripe MCP key lacks `PostProducts` write permission. No Benchline products exist yet. |
+
+### Render env vars set (values not stored here)
+
+- `NODE_VERSION=20`, `NEXT_PUBLIC_SITE_URL=https://benchline.onrender.com`
+- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (legacy anon JWT)
+- `FOUNDER_EMAIL=curtisbailey98@gmail.com`
+- `DOWNLOAD_SIGNING_SECRET` (random 48-byte hex, set directly in Render only)
+
+### Health check (Sep 29, 2026, ~10:40 PM ET)
+
+- `/`, `/shop`, `/shop/core-kit`, `/shop/updates`, `/shop/core-bundle`, `/cart`, `/account`, `/account/login`, policies → 200
+- `POST /api/checkout` → 503 `{"error":"Stripe is not configured (STRIPE_SECRET_KEY)."}` (clean, no crash)
+- `POST /api/webhooks/stripe` → 503 `Webhook not configured`
+- `/dashboard` → 307 redirect to `/account/login?next=/dashboard` (auth required)
+- `/api/downloads/core-kit` → 401 `Sign in required`
+- **Security fix (local commit, not yet deployed):** the paid Core Kit ZIP and markdown files were publicly downloadable at `/downloads/...` because they lived in `public/`. Moved the ZIP to `private/downloads/` (served only by the gated API route), removed the `public/downloads/core-kit` mirror (identical to `content/products/core-kit`), pack script now reads from `content/`. Needs push to go live.
+
+## Done (code)
+
+- [x] Next.js App Router storefront, cart, Stripe Checkout API, webhook, Supabase auth, account, founder dashboard, policies
+- [x] Core Kit content in `content/products/core-kit/`; ZIP built to `private/downloads/` by `npm run pack:core-kit`
 - [x] Auth-gated downloads `/api/downloads/[product]`
-- [x] `.env.example`, `README.md`, `render.yaml`
-- [x] Vitest: pricing, cart totals, webhook idempotency helper — **9/9 passed**
-- [x] `npm run build` — **passed**
+- [x] Vitest 9/9 passing; `npm run build` passing
 
-## Blocked / remaining activation (ops, not code)
+## Still needed from Curtis
 
-- [ ] Create GitHub repo `curtisbailey98-commits/benchline` and push this tree
-- [ ] Create **Benchline-only** Stripe products/prices (do not reuse Kaivaryn) and set:
-  - `STRIPE_PRICE_CORE`, `STRIPE_PRICE_MEMBERSHIP`, `STRIPE_PRICE_BUNDLE`
-  - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-- [ ] Create Supabase project, run `supabase/schema.sql`, set URL/anon/service role keys
-- [ ] Set `FOUNDER_EMAIL`, `NEXT_PUBLIC_SITE_URL`, `DOWNLOAD_SIGNING_SECRET`
+- [ ] Push local commits to GitHub (agent has no GitHub write access) — Render auto-deploys `main`
+- [ ] Grant Stripe MCP product/price write permission (or create in Dashboard): Benchline Core Kit $199 one-time, Benchline Updates $29/mo, Benchline Core + 3 Months Updates $249 one-time (metadata `business=benchline`); then set `STRIPE_PRICE_CORE`, `STRIPE_PRICE_MEMBERSHIP`, `STRIPE_PRICE_BUNDLE` on Render
+- [ ] `STRIPE_SECRET_KEY` (secure input) and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (triggers rebuild — NEXT_PUBLIC_ is build-time)
+- [ ] Create Stripe webhook → `https://benchline.onrender.com/api/webhooks/stripe` (`checkout.session.completed`) and provide `STRIPE_WEBHOOK_SECRET`
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` (Supabase Dashboard → Project Settings → API; not available via connector)
+- [ ] Supabase Auth: set Site URL `https://benchline.onrender.com` and redirect URL `https://benchline.onrender.com/auth/callback`
 - [ ] Optional: `OPENAI_API_KEY` for dashboard analyst
-- [ ] Deploy on Render from `render.yaml`; register Stripe webhook URL
-- [ ] End-to-end purchase test in Stripe test mode
+- [ ] End-to-end purchase test (live mode only — use a real card + refund, or a Stripe test-mode account)
 
 ## Notes
 
-- Without Stripe/Supabase env vars the site still builds and browses; checkout/auth/downloads return clear 503/config messages.
-- Bundle is treated as a **one-time** Stripe price ($249). Updates alone uses Checkout `subscription` mode.
-- Kaivaryn code/repos were not touched.
+- `render.yaml` still says `plan: starter`; the live service was created manually on the **free** plan (cold starts after ~15 min idle).
+- Bundle is a **one-time** Stripe price ($249). Updates alone uses Checkout `subscription` mode.
+- Kaivaryn repo/service/Stripe link/Supabase project were not touched.
