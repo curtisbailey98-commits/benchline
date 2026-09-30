@@ -49,7 +49,7 @@ export default async function ProductPage({ params }: Props) {
   return (
     <div className="container-page py-12 sm:py-14">
       <nav className="mb-6 text-sm text-muted" aria-label="Breadcrumb">
-        <Link href="/shop" className="hover:text-amber">Shop</Link> <span aria-hidden>/</span>{" "}
+        <Link href="/shop" className="hover:text-steel">Shop</Link> <span aria-hidden>/</span>{" "}
         <span>{CATEGORY_LABELS[product.category]}</span>
       </nav>
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
@@ -79,7 +79,7 @@ export default async function ProductPage({ params }: Props) {
             <ul className="mt-4 space-y-2">
               {product.features.map((f) => (
                 <li key={f} className="flex gap-2 text-sm text-foreground/90">
-                  <span className="text-amber" aria-hidden>✓</span>
+                  <span className="text-steel" aria-hidden>✓</span>
                   <span>{f}</span>
                 </li>
               ))}
@@ -105,13 +105,13 @@ export default async function ProductPage({ params }: Props) {
           {product.proMonths && KITS["pro-library"] ? (
             <p className="text-sm text-muted">
               Plus Pro Library access for {product.proMonths} months — see{" "}
-              <Link href="/shop/updates" className="text-amber underline">Benchline Pro</Link>.
+              <Link href="/shop/updates" className="text-steel underline">Benchline Pro</Link>.
             </p>
           ) : null}
           {trade ? (
             <p className="text-sm text-muted">
               More for {trade.operators}:{" "}
-              <Link href={`/for/${trade.landingSlug}`} className="text-amber underline">
+              <Link href={`/for/${trade.landingSlug}`} className="text-steel underline">
                 Benchline for {trade.name}
               </Link>
             </p>

@@ -36,7 +36,7 @@ export default function CartPage() {
           <div className="space-y-4 lg:col-span-2">
             {suggestions.map((s) =>
               s.kind === "swap-to-bundle" ? (
-                <div key={`swap-${s.bundle.id}`} className="card border-amber/60">
+                <div key={`swap-${s.bundle.id}`} className="card border-steel/60">
                   <p className="font-medium">Save {formatPrice(s.savingsCents)} with {s.bundle.name}</p>
                   <p className="mt-1 text-sm text-muted">
                     You have {s.replaces.map((p) => p.name).join(" and ")} in your cart. The bundle is the same files for less.
@@ -53,12 +53,12 @@ export default function CartPage() {
                   </button>
                 </div>
               ) : (
-                <div key={`dup-${s.product.id}`} className="card border-amber/40">
+                <div key={`dup-${s.product.id}`} className="card border-steel/40">
                   <p className="text-sm">
                     <span className="font-medium">{s.coveredBy.name}</span> already includes{" "}
                     {s.product.billing === "recurring" ? "3 prepaid months of Benchline Pro" : s.product.name}.
                   </p>
-                  <button type="button" className="mt-2 text-sm text-amber underline" onClick={() => removeItem(s.product.id)}>
+                  <button type="button" className="mt-2 text-sm text-steel underline" onClick={() => removeItem(s.product.id)}>
                     Remove {s.product.name}
                   </button>
                 </div>
@@ -68,7 +68,7 @@ export default function CartPage() {
             {totals.lines.map(({ product, lineTotalCents }) => (
               <div key={product.id} className="card flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <Link href={`/shop/${product.slug}`} className="font-medium hover:text-amber">
+                  <Link href={`/shop/${product.slug}`} className="font-medium hover:text-steel">
                     {product.name}
                   </Link>
                   <p className="text-sm text-muted">
@@ -97,7 +97,7 @@ export default function CartPage() {
                   {crossSells.map((p) => (
                     <div key={p.id} className="card flex flex-col gap-3 !py-4 sm:flex-row sm:items-center sm:justify-between">
                       <div>
-                        <Link href={`/shop/${p.slug}`} className="font-medium hover:text-amber">{p.name}</Link>
+                        <Link href={`/shop/${p.slug}`} className="font-medium hover:text-steel">{p.name}</Link>
                         <p className="text-sm text-muted">
                           {formatPrice(p.priceCents)}
                           {p.billing === "recurring" ? "/mo" : ""} — {p.tagline}

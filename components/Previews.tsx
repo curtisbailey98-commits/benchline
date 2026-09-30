@@ -11,7 +11,7 @@ function Frame({ title, file, system, children }: { title: string; file: string;
       </figcaption>
       <div className="relative flex-1 px-4 py-4">{children}</div>
       <p className="border-t border-border px-4 py-2.5 text-xs text-muted">
-        Partial preview from the real file · <span className="text-amber">{system}</span> · full file in the Core Kit
+        Partial preview from the real file · <span className="text-steel">{system}</span> · full file in the Core Kit
       </p>
     </figure>
   );
@@ -26,7 +26,7 @@ function SheetRows({ rows, highlight }: { rows: Row[]; highlight?: (r: Row) => b
           return (
             <tr key={r.label} className="border-b border-border/60 last:border-0">
               <td className={`py-1.5 pr-3 ${hi ? "font-semibold text-foreground" : "text-muted"}`}>{r.label}</td>
-              <td className={`py-1.5 text-right ${/^[$\d]/.test(r.value) ? "font-mono" : ""} ${hi ? "font-semibold text-amber" : ""}`}>{r.value}</td>
+              <td className={`py-1.5 text-right ${/^[$\d]/.test(r.value) ? "font-mono" : ""} ${hi ? "font-semibold text-steel" : ""}`}>{r.value}</td>
             </tr>
           );
         })}
@@ -43,7 +43,7 @@ function MdLines({ lines }: { lines: string[] }) {
         if (!l) return <div key={i} className="h-1" />;
         if (l.startsWith("# ")) return <p key={i} className="text-base font-semibold">{l.slice(2)}</p>;
         if (l.startsWith("## ")) return <p key={i} className="text-xs uppercase tracking-wide text-muted">{l.slice(3)}</p>;
-        if (l.startsWith("### ")) return <p key={i} className="pt-1 font-semibold text-amber">{l.slice(4)}</p>;
+        if (l.startsWith("### ")) return <p key={i} className="pt-1 font-semibold text-steel">{l.slice(4)}</p>;
         if (l.startsWith("- [ ] "))
           return (
             <p key={i} className="flex gap-2 text-muted">

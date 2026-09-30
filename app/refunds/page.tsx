@@ -32,12 +32,12 @@ export default function RefundsPage() {
       </p>
       <h2 className="text-foreground">How to request</h2>
       <p>
-        Use the <Link href="/contact" className="text-amber">contact form</Link> with your order email and Stripe receipt. We
+        Use the <Link href="/contact" className="text-steel">contact form</Link> with your order email and Stripe receipt. We
         aim to respond within 2 business days.
       </p>
       <p className="text-sm">
-        See also: <Link href="/terms" className="text-amber">Terms of Sale</Link> ·{" "}
-        <Link href="/terms#subscriptions" className="text-amber">Renewal &amp; cancellation</Link>
+        See also: <Link href="/terms" className="text-steel">Terms of Sale</Link> ·{" "}
+        <Link href="/terms#subscriptions" className="text-steel">Renewal &amp; cancellation</Link>
       </p>
     </div>
   );

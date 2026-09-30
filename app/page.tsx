@@ -26,7 +26,7 @@ const PRO_EXAMPLES = [
 function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
   return (
     <div className="mb-10 max-w-2xl">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">{eyebrow}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-steel">{eyebrow}</p>
       <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
       {sub ? <p className="mt-3 text-muted">{sub}</p> : null}
     </div>
@@ -54,7 +54,7 @@ export default function HomePage() {
       <section className="border-b border-border">
         <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-steel">
               For solo home-service operators
             </p>
             <h1 className="mt-4 text-[2.1rem] font-semibold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.3rem]">
@@ -92,13 +92,13 @@ export default function HomePage() {
                 {pc.inputs.slice(0, 3).map((r) => (
                   <tr key={r.label} className="border-b border-border/60">
                     <td className="px-5 py-2 text-muted">{r.label}</td>
-                    <td className="bg-amber/10 px-5 py-2 text-right font-mono">{r.value}</td>
+                    <td className="bg-steel/10 px-5 py-2 text-right font-mono">{r.value}</td>
                   </tr>
                 ))}
                 {pc.outputs.map((r) => (
                   <tr key={r.label} className="border-b border-border/60 last:border-0">
                     <td className="px-5 py-2 font-medium">{r.label}</td>
-                    <td className={`px-5 py-2 text-right font-semibold text-amber ${/^[$\d]/.test(r.value) ? "font-mono" : "text-sm"}`}>{r.value}</td>
+                    <td className={`px-5 py-2 text-right font-semibold text-steel ${/^[$\d]/.test(r.value) ? "font-mono" : "text-sm"}`}>{r.value}</td>
                   </tr>
                 ))}
               </tbody>
@@ -166,7 +166,7 @@ export default function HomePage() {
       <section className="scroll-mt-20 border-y border-border bg-bg-elevated py-16 sm:py-20" id="pro">
         <div className="container-page grid gap-10 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Benchline Pro</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-steel">Benchline Pro</p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight">
               Benchline keeps getting smarter as your business grows.
             </h2>
@@ -186,7 +186,7 @@ export default function HomePage() {
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {PRO_EXAMPLES.map((e) => (
                 <li key={e} className="flex gap-2 text-sm text-muted">
-                  <span className="text-amber" aria-hidden>+</span>
+                  <span className="text-steel" aria-hidden>+</span>
                   {e}
                 </li>
               ))}
@@ -208,9 +208,9 @@ export default function HomePage() {
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {TRADES.map((t) => (
             <li key={t.id}>
-              <Link href={`/for/${t.landingSlug}`} className="card flex h-full items-center justify-between gap-3 !py-4 hover:border-amber/60">
+              <Link href={`/for/${t.landingSlug}`} className="card flex h-full items-center justify-between gap-3 !py-4 hover:border-steel/60">
                 <span className="font-medium">{t.name}</span>
-                <span className="text-amber" aria-hidden>→</span>
+                <span className="text-steel" aria-hidden>→</span>
               </Link>
             </li>
           ))}
@@ -225,7 +225,7 @@ export default function HomePage() {
 
       {/* FINAL CTA */}
       <section className="container-page pb-8">
-        <div className="card flex flex-col items-start gap-6 border-amber/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="card flex flex-col items-start gap-6 border-steel/50 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold">Get the business side handled this week.</h2>
             <p className="mt-2 text-muted">One purchase. Instant access. No complicated software to learn.</p>

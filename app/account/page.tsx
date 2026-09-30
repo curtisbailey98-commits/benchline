@@ -49,7 +49,7 @@ function ProCard({ access }: { access: ProAccess }) {
     );
   }
   return (
-    <div className="card border-amber/60">
+    <div className="card border-steel/60">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm font-semibold">Benchline Pro</p>
         <span className="badge">{access.pastDue ? "Payment issue" : "Active"}</span>
@@ -157,7 +157,7 @@ export default async function AccountPage() {
           <h1 className="text-3xl font-semibold">Your account</h1>
           <p className="mt-2 text-sm text-muted">{user.email}</p>
         </div>
-        <Link href="/account/login" className="text-sm text-amber hover:underline">Switch account</Link>
+        <Link href="/account/login" className="text-sm text-steel hover:underline">Switch account</Link>
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">

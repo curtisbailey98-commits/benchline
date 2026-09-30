@@ -60,7 +60,7 @@ export function LoginForm() {
           <button
             key={id}
             type="button"
-            className={`rounded-lg px-3 py-1.5 ${mode === id ? "bg-amber-soft text-amber" : "text-muted"}`}
+            className={`rounded-lg px-3 py-1.5 ${mode === id ? "bg-steel-soft text-steel" : "text-muted"}`}
             onClick={() => setMode(id)}
           >
             {label}

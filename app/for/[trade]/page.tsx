@@ -44,7 +44,7 @@ export default async function TradePage({ params }: Props) {
     <div>
       <section className="border-b border-border">
         <div className="container-page py-12 sm:py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Benchline for {trade.name}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-steel">Benchline for {trade.name}</p>
           <h1 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight sm:text-5xl">
             The business side of {trade.name.toLowerCase()}, handled.
           </h1>
@@ -93,7 +93,7 @@ export default async function TradePage({ params }: Props) {
             ))}
           </ul>
           <p>
-            <Link href="/shop/core-kit" className="text-amber underline">See every Core Kit file</Link>
+            <Link href="/shop/core-kit" className="text-steel underline">See every Core Kit file</Link>
           </p>
         </div>
         <WhatsInside downloadKeys={[trade.kitProductId]} />
@@ -110,7 +110,7 @@ export default async function TradePage({ params }: Props) {
           Other trades:{" "}
           {TRADES.filter((t) => t.id !== trade.id).map((t, i, arr) => (
             <span key={t.id}>
-              <Link href={`/for/${t.landingSlug}`} className="text-amber underline">{t.name}</Link>
+              <Link href={`/for/${t.landingSlug}`} className="text-steel underline">{t.name}</Link>
               {i < arr.length - 1 ? " · " : ""}
             </span>
           ))}

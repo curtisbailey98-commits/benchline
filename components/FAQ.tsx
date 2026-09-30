@@ -86,7 +86,7 @@ export function getFaqs(): Array<{ q: string; a: React.ReactNode; text: string }
         {i.link ? (
           <>
             {" "}
-            <Link href={i.link.href} className="text-amber underline">
+            <Link href={i.link.href} className="text-steel underline">
               {i.link.label}
             </Link>
           </>
@@ -100,11 +100,11 @@ export function FAQ() {
   return (
     <div className="space-y-3">
       {getFaqs().map((item) => (
-        <details key={item.q} className="group card !py-4 open:border-amber/40">
+        <details key={item.q} className="group card !py-4 open:border-steel/40">
           <summary className="cursor-pointer list-none font-medium marker:content-none">
             <span className="flex items-center justify-between gap-4">
               {item.q}
-              <span className="text-amber transition group-open:rotate-45" aria-hidden>+</span>
+              <span className="text-steel transition group-open:rotate-45" aria-hidden>+</span>
             </span>
           </summary>
           <p className="mt-3 text-sm leading-relaxed text-muted">{item.a}</p>

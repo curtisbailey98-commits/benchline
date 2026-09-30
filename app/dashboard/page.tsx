@@ -159,7 +159,7 @@ export default async function DashboardPage() {
         <h1 className="text-3xl font-semibold">Founder dashboard</h1>
         <p className="mt-4 text-muted">
           Access restricted. Sign in with an email listed in{" "}
-          <code className="text-amber">FOUNDER_EMAIL</code>.
+          <code className="text-steel">FOUNDER_EMAIL</code>.
         </p>
         <Link href="/account" className="btn btn-secondary mt-6">
           Back to account
@@ -197,7 +197,7 @@ export default async function DashboardPage() {
         ].map(([label, value]) => (
           <div key={label} className="card">
             <p className="text-xs uppercase tracking-wide text-muted">{label}</p>
-            <p className="mt-2 text-2xl font-semibold text-amber">{value}</p>
+            <p className="mt-2 text-2xl font-semibold text-steel">{value}</p>
           </div>
         ))}
       </div>

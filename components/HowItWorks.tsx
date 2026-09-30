@@ -19,16 +19,16 @@ export function HowItWorks() {
           {i < STEPS.length - 1 ? (
             <span aria-hidden className="absolute left-[15px] top-9 h-[calc(100%-2.25rem)] w-px bg-border md:hidden" />
           ) : null}
-          <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-amber bg-bg font-mono text-sm font-semibold text-amber">
+          <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-steel bg-bg font-mono text-sm font-semibold text-steel">
             {i + 1}
           </span>
           <div>
             <p className="font-semibold">{s.step}</p>
-            <p className="text-xs font-medium uppercase tracking-wide text-amber/90">{s.system}</p>
+            <p className="text-xs font-medium uppercase tracking-wide text-steel/90">{s.system}</p>
             <p className="mt-1 text-sm leading-relaxed text-muted">{s.detail}</p>
           </div>
           {i < STEPS.length - 1 && (i + 1) % 4 !== 0 ? (
-            <span aria-hidden className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 text-amber md:block">
+            <span aria-hidden className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 text-steel md:block">
               →
             </span>
           ) : null}

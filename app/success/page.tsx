@@ -35,7 +35,7 @@ async function verify(sessionId: string | undefined): Promise<{
 function SupportLine() {
   return (
     <p className="mt-6 text-sm text-muted">
-      Questions or trouble downloading? <Link href="/contact" className="text-amber underline">Contact support</Link>{" "}
+      Questions or trouble downloading? <Link href="/contact" className="text-steel underline">Contact support</Link>{" "}
       with the email you used at checkout.
     </p>
   );
@@ -100,7 +100,7 @@ export default async function SuccessPage({ searchParams }: Props) {
         <ol className="mt-8 space-y-4">
           {steps.map(([when, what]) => (
             <li key={when} className="flex gap-4">
-              <span className="w-24 shrink-0 font-mono text-sm font-semibold text-amber">{when}</span>
+              <span className="w-24 shrink-0 font-mono text-sm font-semibold text-steel">{when}</span>
               <span className="text-sm leading-relaxed">{what}</span>
             </li>
           ))}

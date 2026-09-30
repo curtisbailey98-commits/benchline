@@ -45,7 +45,7 @@ export default function PrivacyPage() {
       </p>
       <h2>Contact</h2>
       <p>
-        Privacy questions: use the <a href="/contact" className="text-amber">contact form</a>.
+        Privacy questions: use the <a href="/contact" className="text-steel">contact form</a>.
       </p>
     </div>
   );

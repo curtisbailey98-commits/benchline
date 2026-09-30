@@ -20,7 +20,7 @@ export function WhatsInside({ downloadKeys }: { downloadKeys: string[] }) {
             <ul className="mt-4 divide-y divide-border/60">
               {kit.files.map((f) => (
                 <li key={f.file} className="flex gap-3 py-2.5 text-sm">
-                  <span className="w-11 shrink-0 font-mono text-xs leading-5 text-amber">{typeLabel(f.file)}</span>
+                  <span className="w-11 shrink-0 font-mono text-xs leading-5 text-steel">{typeLabel(f.file)}</span>
                   <div className="min-w-0">
                     <p className="break-words font-mono text-xs text-foreground/80">{f.file}</p>
                     <p className="text-muted">{f.summary}</p>

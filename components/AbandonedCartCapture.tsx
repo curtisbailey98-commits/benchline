@@ -29,7 +29,7 @@ export function AbandonedCartCapture() {
   }
 
   return (
-    <form onSubmit={save} className="card mt-6 space-y-3 border-amber/20">
+    <form onSubmit={save} className="card mt-6 space-y-3 border-steel/20">
       <h3 className="text-sm font-semibold">Save your cart</h3>
       <p className="text-xs text-muted">
         Optional: leave your email and we&apos;ll remind you if you don&apos;t finish checkout.

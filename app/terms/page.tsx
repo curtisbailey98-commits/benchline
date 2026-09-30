@@ -16,8 +16,8 @@ export default function TermsPage() {
         Benchline products are sold by <strong className="text-foreground">Kaivaryn LLC</strong> (&quot;we&quot;, &quot;us&quot;).
         Payments are processed by Stripe on Kaivaryn LLC&apos;s account, so your card statement and receipt may show
         Kaivaryn LLC. By buying, you agree to these terms, our{" "}
-        <Link href="/refunds" className="text-amber">Refund Policy</Link>, and our{" "}
-        <Link href="/privacy" className="text-amber">Privacy Policy</Link>.
+        <Link href="/refunds" className="text-steel">Refund Policy</Link>, and our{" "}
+        <Link href="/privacy" className="text-steel">Privacy Policy</Link>.
       </p>
 
       <h2 className="text-foreground">What you&apos;re buying</h2>
@@ -41,7 +41,7 @@ export default function TermsPage() {
       <p>
         Downloads unlock in your account (sign in with the email used at checkout) once Stripe confirms payment. Please save
         your files; we aim to keep downloads available in your account, but you should keep your own copy. See{" "}
-        <Link href="/shipping" className="text-amber">Digital delivery</Link>.
+        <Link href="/shipping" className="text-steel">Digital delivery</Link>.
       </p>
 
       <h2 className="text-foreground">License</h2>
@@ -63,13 +63,13 @@ export default function TermsPage() {
         </li>
         <li>
           <strong className="text-foreground">How to cancel.</strong> Anytime from your account page (&quot;Manage billing /
-          cancel&quot;), or by sending a request through the <Link href="/contact" className="text-amber">contact form</Link>{" "}
+          cancel&quot;), or by sending a request through the <Link href="/contact" className="text-steel">contact form</Link>{" "}
           from the email on your account. Cancellation stops future renewals.
         </li>
         <li>
           <strong className="text-foreground">After you cancel.</strong> You keep Pro access until the end of the month you
           already paid for. We don&apos;t charge cancellation fees. Partial months aren&apos;t refunded except for billing
-          errors (see the <Link href="/refunds" className="text-amber">Refund Policy</Link>).
+          errors (see the <Link href="/refunds" className="text-steel">Refund Policy</Link>).
         </li>
         <li>
           <strong className="text-foreground">Failed payments.</strong> If a renewal payment fails, Stripe may retry it. If it
@@ -95,12 +95,12 @@ export default function TermsPage() {
 
       <h2 className="text-foreground">Refunds</h2>
       <p>
-        See the <Link href="/refunds" className="text-amber">Refund Policy</Link>.
+        See the <Link href="/refunds" className="text-steel">Refund Policy</Link>.
       </p>
 
       <h2 className="text-foreground">Contact</h2>
       <p>
-        Questions about an order or these terms: use the <Link href="/contact" className="text-amber">contact form</Link>.
+        Questions about an order or these terms: use the <Link href="/contact" className="text-steel">contact form</Link>.
       </p>
     </div>
   );

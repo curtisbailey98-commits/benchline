@@ -42,7 +42,7 @@ export default async function ShopPage({ searchParams }: Props) {
       href={href}
       scroll={false}
       aria-current={active ? "page" : undefined}
-      className={`rounded-md border px-3 py-2 text-sm ${active ? "border-amber bg-amber text-[#14110b] font-semibold" : "border-border text-muted hover:border-amber hover:text-foreground"}`}
+      className={`rounded-md border px-3 py-2 text-sm ${active ? "border-steel bg-steel text-on-steel font-semibold" : "border-border text-muted hover:border-steel hover:text-foreground"}`}
     >
       {label}
     </Link>
@@ -71,7 +71,7 @@ export default async function ShopPage({ searchParams }: Props) {
         {trade ? (
           <p className="mt-3 text-sm text-muted">
             Showing {trade.name.toLowerCase()} products.{" "}
-            <Link href={`/for/${trade.landingSlug}`} className="text-amber underline">
+            <Link href={`/for/${trade.landingSlug}`} className="text-steel underline">
               See the {trade.name} page
             </Link>
           </p>

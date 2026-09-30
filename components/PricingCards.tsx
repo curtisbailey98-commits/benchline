@@ -14,7 +14,7 @@ import {
 function Check({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-2 text-sm">
-      <span className="text-amber" aria-hidden>✓</span>
+      <span className="text-steel" aria-hidden>✓</span>
       <span className="text-foreground/90">{children}</span>
     </li>
   );
@@ -56,8 +56,8 @@ export function PricingCards() {
         </article>
 
         {/* Featured bundle */}
-        <article className="card relative flex flex-col border-2 border-amber lg:-my-3">
-          <span className="absolute -top-3 left-6 rounded bg-amber px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[#14110b]">
+        <article className="card relative flex flex-col border-2 border-steel lg:-my-3">
+          <span className="absolute -top-3 left-6 rounded bg-steel px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-on-steel">
             Best value
           </span>
           <h3 className="text-lg font-semibold">Core + 3 Months Pro</h3>
@@ -71,8 +71,8 @@ export function PricingCards() {
               <tr><td className="py-0.5 font-sans text-muted">Core Kit</td><td className="text-right">{formatPrice(core.priceCents)}</td></tr>
               <tr><td className="py-0.5 font-sans text-muted">3 months Pro ({formatPrice(PRO_MONTHLY_CENTS)} × {PRO_BUNDLE_MONTHS})</td><td className="text-right">{formatPrice(proValue)}</td></tr>
               <tr className="border-t border-border"><td className="py-0.5 font-sans text-muted">Total value</td><td className="text-right">{formatPrice(totalValue)}</td></tr>
-              <tr><td className="py-0.5 font-sans font-semibold">You pay</td><td className="text-right font-semibold text-amber">{formatPrice(bundle.priceCents)}</td></tr>
-              <tr><td className="py-0.5 font-sans font-semibold">You save</td><td className="text-right font-semibold text-amber">{formatPrice(savings)}</td></tr>
+              <tr><td className="py-0.5 font-sans font-semibold">You pay</td><td className="text-right font-semibold text-steel">{formatPrice(bundle.priceCents)}</td></tr>
+              <tr><td className="py-0.5 font-sans font-semibold">You save</td><td className="text-right font-semibold text-steel">{formatPrice(savings)}</td></tr>
             </tbody>
           </table>
           <ul className="mt-5 space-y-2.5">
@@ -109,7 +109,7 @@ export function PricingCards() {
       </div>
       <div className="mt-8 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
         <LegalLinks />
-        <Link href="/shop" className="shrink-0 text-sm font-medium text-amber hover:underline">
+        <Link href="/shop" className="shrink-0 text-sm font-medium text-steel hover:underline">
           Trade kits & add-ons →
         </Link>
       </div>

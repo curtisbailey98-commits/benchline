@@ -16,11 +16,11 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-foreground">Product</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
-            <li><Link href="/shop/core-kit" className="hover:text-amber">Core Kit</Link></li>
-            <li><Link href="/shop/core-bundle" className="hover:text-amber">Core + 3 Months Pro</Link></li>
-            <li><Link href="/shop/updates" className="hover:text-amber">Benchline Pro</Link></li>
-            <li><Link href="/shop" className="hover:text-amber">Trade kits &amp; add-ons</Link></li>
-            <li><Link href="/account" className="hover:text-amber">Account &amp; downloads</Link></li>
+            <li><Link href="/shop/core-kit" className="hover:text-steel">Core Kit</Link></li>
+            <li><Link href="/shop/core-bundle" className="hover:text-steel">Core + 3 Months Pro</Link></li>
+            <li><Link href="/shop/updates" className="hover:text-steel">Benchline Pro</Link></li>
+            <li><Link href="/shop" className="hover:text-steel">Trade kits &amp; add-ons</Link></li>
+            <li><Link href="/account" className="hover:text-steel">Account &amp; downloads</Link></li>
           </ul>
         </div>
         <div>
@@ -28,7 +28,7 @@ export function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-muted">
             {TRADES.map((t) => (
               <li key={t.id}>
-                <Link href={`/for/${t.landingSlug}`} className="hover:text-amber">{t.name}</Link>
+                <Link href={`/for/${t.landingSlug}`} className="hover:text-steel">{t.name}</Link>
               </li>
             ))}
           </ul>
@@ -36,12 +36,12 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-foreground">Support &amp; legal</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
-            <li><Link href="/contact" className="hover:text-amber">Contact &amp; support</Link></li>
-            <li><Link href="/terms" className="hover:text-amber">Terms of Sale</Link></li>
-            <li><Link href="/privacy" className="hover:text-amber">Privacy Policy</Link></li>
-            <li><Link href="/refunds" className="hover:text-amber">Refund Policy</Link></li>
-            <li><Link href="/terms#subscriptions" className="hover:text-amber">Renewal &amp; cancellation</Link></li>
-            <li><Link href="/shipping" className="hover:text-amber">Digital delivery</Link></li>
+            <li><Link href="/contact" className="hover:text-steel">Contact &amp; support</Link></li>
+            <li><Link href="/terms" className="hover:text-steel">Terms of Sale</Link></li>
+            <li><Link href="/privacy" className="hover:text-steel">Privacy Policy</Link></li>
+            <li><Link href="/refunds" className="hover:text-steel">Refund Policy</Link></li>
+            <li><Link href="/terms#subscriptions" className="hover:text-steel">Renewal &amp; cancellation</Link></li>
+            <li><Link href="/shipping" className="hover:text-steel">Digital delivery</Link></li>
           </ul>
         </div>
       </div>
