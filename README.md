@@ -35,7 +35,7 @@ See `.env.example` for the full list (placeholders only).
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL (no trailing slash) — Stripe success/cancel URLs, sitemap, OG |
 | `STRIPE_SECRET_KEY` | Stripe secret key (checkout, success-page verification, billing portal) |
 | `STRIPE_WEBHOOK_SECRET` | Webhook signing secret |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Publishable key (reserved; Checkout is server-redirect) |
+| `STRIPE_PORTAL_CONFIGURATION_ID` | Optional — Benchline's own Customer Portal configuration (`bpc_…`, not secret). No publishable key is needed: checkout redirects to the server-created `session.url` |
 | `STRIPE_PRICE_*` | **Optional** Price ID overrides — prices are found by lookup key by default |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |

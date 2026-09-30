@@ -42,10 +42,11 @@
 ## Still needed from Curtis (before launch)
 
 - [ ] Push the local commit(s) to GitHub — Render auto-deploys `main`
-- [ ] In **Kaivaryn LLC's Stripe account**, create the 17 Benchline prices with the lookup keys in README → "Stripe setup" (at minimum the 3 main offers: `benchline_core_kit`, `benchline_updates_monthly`, `benchline_core_bundle`)
-- [ ] Render env: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (build-time), `STRIPE_WEBHOOK_SECRET`, **`SUPABASE_SERVICE_ROLE_KEY`** (without it orders are NOT recorded and downloads never unlock)
-- [ ] Stripe webhook endpoint `https://benchline.onrender.com/api/webhooks/stripe` with the events listed in README
-- [ ] Enable the Stripe Customer Portal (cancel + update card) so "Manage billing / cancel" works
+- [x] Live Stripe (Kaivaryn LLC account): 17 Benchline products/prices with lookup keys + `metadata.business=benchline`
+- [x] Live webhook endpoint `https://benchline.onrender.com/api/webhooks/stripe` ("Benchline") with the events listed in README
+- [x] Benchline Customer Portal configuration (cancel at period end, update card, invoice history) — id set as `STRIPE_PORTAL_CONFIGURATION_ID`
+- [x] Render env: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PORTAL_CONFIGURATION_ID` (no publishable key needed)
+- [ ] Render env: **`SUPABASE_SERVICE_ROLE_KEY`** (without it paid orders are NOT recorded and downloads never unlock)
 - [ ] Supabase Auth: Site URL `https://benchline.onrender.com`, redirect `https://benchline.onrender.com/auth/callback`
 - [ ] Have an attorney review Terms / Refund / Privacy and the contract templates; confirm support channel (no support email exists — site uses the contact form)
 - [ ] One real end-to-end purchase + refund test per mode (one-time, subscription) before announcing

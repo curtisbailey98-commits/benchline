@@ -5,9 +5,15 @@ import { createAdminClient, hasSupabaseAdmin } from "@/lib/supabase/admin";
 
 /**
  * Opens the Stripe Customer Portal so Benchline Pro members can update their
- * card or cancel. Requires the portal to be enabled in the Stripe Dashboard
- * (Settings → Billing → Customer portal).
+ * card or cancel. The Stripe account is shared with other Kaivaryn LLC products,
+ * so Benchline uses its own portal configuration (STRIPE_PORTAL_CONFIGURATION_ID,
+ * a non-secret bpc_… id). Without it Stripe falls back to the account default.
  */
+function portalConfigurationId(): string | undefined {
+  const id = process.env.STRIPE_PORTAL_CONFIGURATION_ID?.trim();
+  return id && id.startsWith("bpc_") ? id : undefined;
+}
+
 export async function POST(request: Request) {
   if (!process.env.STRIPE_SECRET_KEY || !hasSupabaseAdmin()) {
     return NextResponse.json(
@@ -48,6 +54,7 @@ export async function POST(request: Request) {
     const session = await getStripe().billingPortal.sessions.create({
       customer: customerId,
       return_url: `${siteUrl}/account`,
+      ...(portalConfigurationId() ? { configuration: portalConfigurationId() } : {}),
     });
     return NextResponse.json({ url: session.url });
   } catch (err) {
