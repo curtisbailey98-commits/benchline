@@ -49,3 +49,21 @@ Capture:
 - Hand a one-pager or QR to your estimate form.
 
 *Benchline Core Kit — original operator SOP. Customize names, radius, and trade language.*
+
+---
+
+### Intake form (copy into Google Forms, Jotform, or your booking app)
+
+1. Name
+2. Mobile number (texts OK?) and email
+3. Service address
+4. What do you need done? (Describe in your own words)
+5. Photos of the area/item (upload)
+6. How soon do you need it? (This week / next 2 weeks / flexible / specific date)
+7. Preferred days and times
+8. Pets, gate codes, parking, or access notes
+9. Have you had this done before? When?
+10. Anyone else who needs to approve the work?
+11. How did you hear about us?
+
+**After a form comes in:** reply within 15 minutes if you can, using the first-response text in `09-lead-follow-up-system.md`.

@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { DOWNLOADABLE_PRODUCTS } from "@/lib/downloads";
+import { getKit } from "@/lib/kits";
+import { orderGrantsDownload, type EntitlementOrder } from "@/lib/entitlements";
+import { loadProAccess } from "@/lib/pro-server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, hasSupabaseAdmin } from "@/lib/supabase/admin";
 
@@ -9,8 +11,8 @@ type Params = { params: Promise<{ product: string }> };
 
 export async function GET(request: Request, { params }: Params) {
   const { product } = await params;
-  const meta = DOWNLOADABLE_PRODUCTS[product];
-  if (!meta) {
+  const kit = getKit(product);
+  if (!kit) {
     return NextResponse.json({ error: "Unknown product" }, { status: 404 });
   }
 
@@ -35,50 +37,54 @@ export async function GET(request: Request, { params }: Params) {
     return NextResponse.json({ error: "Sign in required" }, { status: 401 });
   }
 
-  if (!orderId) {
+  // Pro Library: unlocked by an active Benchline Pro subscription or bundle months.
+  if (kit.key === PRO_LIBRARY_KEY) {
+    const access = await loadProAccess(supabase, { id: user.id, email: user.email });
+    if (!access.active) {
+      return NextResponse.json({ error: "Benchline Pro access required" }, { status: 403 });
+    }
+    return sendZip(kit.zipName);
+  }
+
+  if (!orderId || !/^[0-9a-f-]{36}$/i.test(orderId)) {
     return NextResponse.json({ error: "orderId required" }, { status: 400 });
   }
 
-  // Verify entitlement: order belongs to user and is paid, item has download_key
-  let entitled = false;
+  // Entitlement: order is paid, belongs to this user, and an item unlocks this kit.
+  const select = "id, user_id, email, status, order_items(download_key, download_keys)";
+  let order: EntitlementOrder | null = null;
   if (hasSupabaseAdmin()) {
-    const admin = createAdminClient();
-    const { data: order } = await admin
+    const { data } = await createAdminClient()
       .from("orders")
-      .select("id, user_id, email, status, order_items(download_key)")
+      .select(select)
       .eq("id", orderId)
       .maybeSingle();
-
-    if (
-      order &&
-      (order.status === "paid" || order.status === "fulfilled") &&
-      (order.user_id === user.id ||
-        order.email?.toLowerCase() === user.email?.toLowerCase())
-    ) {
-      const items = (order.order_items as Array<{ download_key: string | null }>) || [];
-      entitled = items.some((i) => i.download_key === product);
-    }
+    order = (data as EntitlementOrder | null) ?? null;
   } else {
-    const { data: order } = await supabase
+    // RLS limits this to the signed-in user's own orders.
+    const { data } = await supabase
       .from("orders")
-      .select("id, status, order_items(download_key)")
+      .select(select)
       .eq("id", orderId)
       .eq("user_id", user.id)
       .maybeSingle();
-    if (order && (order.status === "paid" || order.status === "fulfilled")) {
-      const items = (order.order_items as Array<{ download_key: string | null }>) || [];
-      entitled = items.some((i) => i.download_key === product);
-    }
+    order = (data as EntitlementOrder | null) ?? null;
   }
 
-  if (!entitled) {
+  if (!orderGrantsDownload(order, { id: user.id, email: user.email }, kit.key)) {
     return NextResponse.json({ error: "Not entitled to this download" }, { status: 403 });
   }
 
+  return sendZip(kit.zipName);
+}
+
+const PRO_LIBRARY_KEY = "pro-library";
+
+function sendZip(zipName: string) {
   // Paid files live outside public/ so they are never statically served.
-  const zipPath = path.join(process.cwd(), "private", "downloads", meta.zipName);
+  const zipPath = path.join(process.cwd(), "private", "downloads", zipName);
   if (!fs.existsSync(zipPath)) {
-    return NextResponse.json({ error: "File missing — run npm run pack:core-kit" }, { status: 404 });
+    return NextResponse.json({ error: "File missing — run npm run pack:kits" }, { status: 404 });
   }
 
   const buf = fs.readFileSync(zipPath);
@@ -86,7 +92,7 @@ export async function GET(request: Request, { params }: Params) {
     status: 200,
     headers: {
       "Content-Type": "application/zip",
-      "Content-Disposition": `attachment; filename="${meta.zipName}"`,
+      "Content-Disposition": `attachment; filename="${zipName}"`,
       "Cache-Control": "no-store",
     },
   });

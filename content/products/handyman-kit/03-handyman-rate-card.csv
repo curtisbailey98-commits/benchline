@@ -1,0 +1,36 @@
+category,item,unit,low_usd,target_usd,notes
+rates,Minimum per-visit charge (includes first hour),visit,125,175,Protects you on tiny jobs
+rates,Hourly labor after first hour,hour,65,110,Solo handyman
+rates,Supply run / materials pickup,trip,20,40,Plus materials at cost + markup
+rates,Materials markup,percent,15,25,Percent over receipt
+rates,Haul-away (small load),load,40,90,Dump fees vary
+Mounting,"TV mount — up to 65in, drywall/studs",task (min. visit charge applies),65,120,Client supplies mount; cord concealment extra
+Mounting,TV mount — cord concealment kit (in-wall rated),task (min. visit charge applies),95,125,Use an in-wall rated kit; no extension cords in walls
+Mounting,Hang shelves (per 3 shelves),task (min. visit charge applies),45,95,Anchors vs studs changes time
+Mounting,Hang pictures / mirrors (per 5 items),task (min. visit charge applies),50,100,Heavy mirrors: French cleat
+Mounting,Curtain rods (per window),task (min. visit charge applies),30,50,
+Mounting,"Blinds install (per window, inside mount)",task (min. visit charge applies),30,50,
+Assembly,"Furniture assembly — small (nightstand, chair)",task (min. visit charge applies),45,70,
+Assembly,"Furniture assembly — large (dresser, bed frame)",task (min. visit charge applies),130,240,Wardrobes/PAX-style: 3–5 hrs
+Drywall & paint,Drywall patch — small (under 6in),task (min. visit charge applies),75,105,Needs a second visit or fast-set compound
+Drywall & paint,Drywall patch — medium (6–16in),task (min. visit charge applies),150,260,Often 2 visits for mud + paint
+Drywall & paint,Touch-up paint (per wall),task (min. visit charge applies),65,95,Client supplies paint; color match not guaranteed
+Bath & kitchen,Caulk tub or shower surround,task (min. visit charge applies),100,160,Old caulk removal is most of the time
+Bath & kitchen,Replace toilet fill valve / flapper,task (min. visit charge applies),65,90,Check your state's plumbing license limits
+Bath & kitchen,Replace kitchen/bath faucet (same footprint),task (min. visit charge applies),85,145,Client supplies faucet; seized nuts add time
+Bath & kitchen,Replace garbage disposal (like for like),task (min. visit charge applies),85,145,Check license limits
+Bath & kitchen,Replace toilet (like for like),task (min. visit charge applies),145,205,Wax ring/bolts; haul-away extra
+Bath & kitchen,Regrout small area (under 10 sq ft),task (min. visit charge applies),190,305,
+Electrical (where allowed),Swap light fixture (existing box),task (min. visit charge applies),65,95,Many states require a licensed electrician — check first
+Electrical (where allowed),Swap ceiling fan (existing fan-rated box),task (min. visit charge applies),85,145,Confirm box is fan-rated
+Electrical (where allowed),Replace smoke/CO detectors (per unit),task (min. visit charge applies),20,30,Battery units; hardwired = check license
+Doors & windows,Replace interior door hardware (per door),task (min. visit charge applies),30,50,
+Doors & windows,Hang pre-hung interior door,task (min. visit charge applies),170,285,Door supplied by client; trim extra
+Doors & windows,Adjust sticking door / strike plate,task (min. visit charge applies),50,75,
+Doors & windows,Weatherstrip exterior door,task (min. visit charge applies),90,120,
+Doors & windows,Replace window screen (rescreen),task (min. visit charge applies),40,60,
+Exterior,Gutter cleaning — 1 story (per 100 lf),task (min. visit charge applies),85,120,Ladder safety; 2-story needs a second person
+Exterior,Fence board / picket repair (per 5 boards),task (min. visit charge applies),90,120,
+Exterior,Deck board replacement (per board),task (min. visit charge applies),65,90,Check joists while you're there
+Exterior,Pressure-treat / seal small deck (per 100 sq ft),task (min. visit charge applies),110,170,
+Misc,"Baby-proofing package (gates, latches, anchors)",task (min. visit charge applies),130,240,Client supplies products

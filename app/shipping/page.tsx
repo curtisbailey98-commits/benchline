@@ -6,20 +6,21 @@ export default function ShippingPage() {
   return (
     <div className="container-page prose-bl py-14">
       <h1 className="text-3xl font-semibold text-foreground">Digital delivery terms</h1>
-      <p className="mt-2 text-sm text-muted">Last updated: September 27, 2026</p>
+      <p className="mt-2 text-sm text-muted">Last updated: September 30, 2026</p>
       <p className="mt-6">
         Benchline does not ship physical goods. All products are delivered digitally.
       </p>
-      <h2>Core Kit</h2>
+      <h2>Kits, add-on packs, and bundles</h2>
       <ul>
-        <li>After Stripe confirms <code>checkout.session.completed</code>, the order is marked paid.</li>
-        <li>Download links appear in your account and are auth-gated (and/or signed).</li>
-        <li>Files are also mirrored under the product content directory for our fulfillment pipeline.</li>
+        <li>After Stripe confirms your payment, your order is marked paid automatically.</li>
+        <li>Sign in to your account with the email you used at checkout; your ZIP downloads are listed under &quot;Your downloads&quot;.</li>
+        <li>Download links only work for the signed-in account that bought the product.</li>
       </ul>
-      <h2>Updates membership</h2>
+      <h2>Benchline Pro</h2>
       <ul>
-        <li>Monthly playbooks are delivered by email and/or member area access while the subscription is active.</li>
-        <li>Archive access ends when the subscription ends, except where we state otherwise.</li>
+        <li>While Pro is active (subscription or bundle months), the Pro Library download appears on your account page.</li>
+        <li>We email members when new Pro tools are added.</li>
+        <li>Pro Library access ends when your membership or bundle months end.</li>
       </ul>
       <h2>Access issues</h2>
       <p>

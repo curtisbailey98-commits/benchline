@@ -37,12 +37,12 @@ export function ruleBasedSummary(data: DashboardAggregates): string {
 
   if (data.paidOrderCount === 0) {
     lines.push(
-      "No paid orders yet — focus on activating Stripe prices, shipping the Core Kit PDP, and capturing abandoned carts."
+      "No paid orders yet — focus on activating Stripe prices and watching the checkout funnel."
     );
   } else if (data.openTickets > 0) {
     lines.push("Clear open support tickets before pushing more paid acquisition.");
   } else {
-    lines.push("Ops look clean. Consider featuring the Core + Updates bundle on the homepage.");
+    lines.push("Ops look clean. Consider promoting Core + 3 Months Pro and the trade kits to past buyers.");
   }
 
   return lines.join(" ");

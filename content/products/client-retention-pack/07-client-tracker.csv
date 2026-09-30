@@ -1,0 +1,3 @@
+client_name,phone,email,service_address,service_type,frequency,last_service_date,last_service_price,next_touch_date,next_touch_script,review_requested,review_left,referral_source,notes
+EXAMPLE — delete this row,555-0100,client@example.com,123 Example St,standard clean,every 2 weeks,2026-09-15,160,2026-09-29,rebook reminder (03),yes,no,Google,Prefers text; dog named Max
+EXAMPLE — delete this row,555-0101,,456 Sample Ave,driveway wash,one-time,2026-04-10,210,2027-03-15,anniversary win-back (05),yes,yes,neighbor referral,Oil stain improved not removed

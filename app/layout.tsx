@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PageViewTracker } from "@/components/Analytics";
 import { CartProvider } from "@/components/CartProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -15,26 +16,36 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE = "Benchline — The back office for solo home-service operators";
+const DESCRIPTION =
+  "Pricing tools, estimate templates, follow-up systems, job checklists, review workflows, and money trackers for cleaners, pressure washers, lawn-care operators, mobile detailers, and handymen. One purchase, instant access.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: {
-    default: "Benchline — The operating system for solo trades",
+    default: TITLE,
     template: "%s · Benchline",
   },
-  description:
-    "Scripts, estimates, job checklists, review asks, and weekly money SOPs for solo home-service operators. Digital kits that install in a day.",
+  description: DESCRIPTION,
+  applicationName: "Benchline",
   openGraph: {
-    title: "Benchline — The operating system for solo trades",
-    description:
-      "Paperwork OS for cleaners, handymen, lawn care, pressure washing, and more.",
+    title: TITLE,
+    description: DESCRIPTION,
     type: "website",
     siteName: "Benchline",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Benchline",
-    description: "The operating system for solo trades.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f1115",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -46,6 +57,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <CartProvider>
+          <PageViewTracker />
           <Header />
           <main className="min-h-[70vh]">{children}</main>
           <Footer />

@@ -1,6 +1,6 @@
 # Benchline BUILD_STATUS
 
-**Last updated:** Tuesday Sep 29, 2026, ~10:45 PM ET  
+**Last updated:** Wednesday Sep 30, 2026, ~2:30 AM ET (pre-launch upgrade, local commit — not pushed/deployed)  
 **Path:** `/workspace/project-30k/benchline`  
 **Repo:** `curtisbailey98-commits/benchline` (branch `main`)
 
@@ -10,7 +10,7 @@
 |-------|--------|---------|
 | GitHub | Pushed | `curtisbailey98-commits/benchline` @ `main` (deployed commit `60d6f3f`) |
 | Render | **Live** (free plan, Virginia) | Service `srv-dau7am7avr4c738088og` → https://benchline.onrender.com — autoDeploy on `main` |
-| Supabase | **ACTIVE_HEALTHY** (free, us-east-1) | Project ref `iwgsxwvtjgtryntacrsv` → https://iwgsxwvtjgtryntacrsv.supabase.co — `supabase/schema.sql` applied (9 tables, RLS on, seed products/prices) |
+| Supabase | **ACTIVE_HEALTHY** (free, us-east-1) | Project ref `iwgsxwvtjgtryntacrsv` → https://iwgsxwvtjgtryntacrsv.supabase.co — `schema.sql` + migration `benchline_catalog_pro_analytics` applied (11 tables, RLS on, 17 products/prices seeded) |
 | Stripe | **Blocked** | Product/price creation failed: the Stripe MCP key lacks `PostProducts` write permission. No Benchline products exist yet. |
 
 ### Render env vars set (values not stored here)
@@ -31,24 +31,27 @@
 
 ## Done (code)
 
-- [x] Next.js App Router storefront, cart, Stripe Checkout API, webhook, Supabase auth, account, founder dashboard, policies
-- [x] Core Kit content in `content/products/core-kit/`; ZIP built to `private/downloads/` by `npm run pack:core-kit`
-- [x] Auth-gated downloads `/api/downloads/[product]`
-- [x] Vitest 9/9 passing; `npm run build` passing
+- [x] Storefront, cart, Stripe Checkout API, webhook, Supabase auth, account, founder dashboard, policies
+- [x] Pre-launch upgrade (Sep 30): new hero, Core Kit reframed as 7 systems (new files: 00-START-HERE, 07 pricing guide, 08 pricing calculator XLSX, 09 lead follow-up system, 10 weekly money dashboard XLSX), How-it-works flow, previews from real files, 3-card pricing (Best value bundle), Is Benchline for me?, 14-question FAQ, verified success page, Terms page, legal links near checkout, OG/Twitter image, sitemap/robots
+- [x] Benchline Updates renamed **Benchline Pro** (id/slug `updates` unchanged) + Pro Library download, subscription sync, bundle 3-month Pro entitlement, billing portal
+- [x] Catalog: 5 Trade Kits ($129), 5 Core+Kit bundles ($279), 4 add-ons ($29–$49); `/shop?trade=`, `/for/[trade]` pages, cart bundle-swap + cross-sells
+- [x] Webhook: checkout completed/async succeeded, subscription created/updated/deleted, invoice paid/failed, charge.refunded (revoke); ignores non-Benchline events on the shared Stripe account
+- [x] First-party analytics (`analytics_events`) + funnel on `/dashboard`
+- [x] Vitest 52/52; `npm run build` passing; Playwright QA screenshots in `/workspace/project-30k/qa/`
 
-## Still needed from Curtis
+## Still needed from Curtis (before launch)
 
-- [ ] Push local commits to GitHub (agent has no GitHub write access) — Render auto-deploys `main`
-- [ ] Grant Stripe MCP product/price write permission (or create in Dashboard): Benchline Core Kit $199 one-time, Benchline Updates $29/mo, Benchline Core + 3 Months Updates $249 one-time (metadata `business=benchline`); then set `STRIPE_PRICE_CORE`, `STRIPE_PRICE_MEMBERSHIP`, `STRIPE_PRICE_BUNDLE` on Render
-- [ ] `STRIPE_SECRET_KEY` (secure input) and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (triggers rebuild — NEXT_PUBLIC_ is build-time)
-- [ ] Create Stripe webhook → `https://benchline.onrender.com/api/webhooks/stripe` (`checkout.session.completed`) and provide `STRIPE_WEBHOOK_SECRET`
-- [ ] `SUPABASE_SERVICE_ROLE_KEY` (Supabase Dashboard → Project Settings → API; not available via connector)
-- [ ] Supabase Auth: set Site URL `https://benchline.onrender.com` and redirect URL `https://benchline.onrender.com/auth/callback`
-- [ ] Optional: `OPENAI_API_KEY` for dashboard analyst
-- [ ] End-to-end purchase test (live mode only — use a real card + refund, or a Stripe test-mode account)
+- [ ] Push the local commit(s) to GitHub — Render auto-deploys `main`
+- [ ] In **Kaivaryn LLC's Stripe account**, create the 17 Benchline prices with the lookup keys in README → "Stripe setup" (at minimum the 3 main offers: `benchline_core_kit`, `benchline_updates_monthly`, `benchline_core_bundle`)
+- [ ] Render env: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (build-time), `STRIPE_WEBHOOK_SECRET`, **`SUPABASE_SERVICE_ROLE_KEY`** (without it orders are NOT recorded and downloads never unlock)
+- [ ] Stripe webhook endpoint `https://benchline.onrender.com/api/webhooks/stripe` with the events listed in README
+- [ ] Enable the Stripe Customer Portal (cancel + update card) so "Manage billing / cancel" works
+- [ ] Supabase Auth: Site URL `https://benchline.onrender.com`, redirect `https://benchline.onrender.com/auth/callback`
+- [ ] Have an attorney review Terms / Refund / Privacy and the contract templates; confirm support channel (no support email exists — site uses the contact form)
+- [ ] One real end-to-end purchase + refund test per mode (one-time, subscription) before announcing
 
 ## Notes
 
 - `render.yaml` now uses `plan: free` to match the live service (free plan spins down after ~15 min idle; first request is slow).
-- Bundle is a **one-time** Stripe price ($249). Updates alone uses Checkout `subscription` mode.
+- Bundle is a **one-time** Stripe price ($249); its 3 Pro months are granted via `orders.pro_access_until` (no auto-renew). Pro alone uses Checkout `subscription` mode.
 - Kaivaryn repo/service/Stripe link/Supabase project were not touched.

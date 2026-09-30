@@ -1,42 +1,54 @@
 import Link from "next/link";
+import { TRADES } from "@/lib/trades";
 import { LogoMark } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-bg-elevated">
-      <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-20 border-t border-border bg-bg-elevated">
+      <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <LogoMark />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-            The operating system for solo trades — intake, estimates, job closeout,
-            reviews, and weekly money. Built for operators who are skilled at the
-            work and done improvising the paperwork.
+            Pricing tools, estimate templates, follow-up systems, job checklists, review workflows, and
+            money trackers for solo home-service operators.
           </p>
         </div>
         <div>
           <h3 className="text-sm font-semibold text-foreground">Product</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
-            <li><Link href="/shop" className="hover:text-amber">Shop</Link></li>
             <li><Link href="/shop/core-kit" className="hover:text-amber">Core Kit</Link></li>
-            <li><Link href="/shop/updates" className="hover:text-amber">Updates</Link></li>
-            <li><Link href="/shop/core-bundle" className="hover:text-amber">Bundle</Link></li>
+            <li><Link href="/shop/core-bundle" className="hover:text-amber">Core + 3 Months Pro</Link></li>
+            <li><Link href="/shop/updates" className="hover:text-amber">Benchline Pro</Link></li>
+            <li><Link href="/shop" className="hover:text-amber">Trade kits &amp; add-ons</Link></li>
+            <li><Link href="/account" className="hover:text-amber">Account &amp; downloads</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold text-foreground">Company</h3>
+          <h3 className="text-sm font-semibold text-foreground">By trade</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted">
-            <li><Link href="/contact" className="hover:text-amber">Contact</Link></li>
-            <li><Link href="/privacy" className="hover:text-amber">Privacy</Link></li>
-            <li><Link href="/refunds" className="hover:text-amber">Refunds</Link></li>
-            <li><Link href="/shipping" className="hover:text-amber">Delivery</Link></li>
-            <li><Link href="/account" className="hover:text-amber">Account</Link></li>
+            {TRADES.map((t) => (
+              <li key={t.id}>
+                <Link href={`/for/${t.landingSlug}`} className="hover:text-amber">{t.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-foreground">Support &amp; legal</h3>
+          <ul className="mt-3 space-y-2 text-sm text-muted">
+            <li><Link href="/contact" className="hover:text-amber">Contact &amp; support</Link></li>
+            <li><Link href="/terms" className="hover:text-amber">Terms of Sale</Link></li>
+            <li><Link href="/privacy" className="hover:text-amber">Privacy Policy</Link></li>
+            <li><Link href="/refunds" className="hover:text-amber">Refund Policy</Link></li>
+            <li><Link href="/terms#subscriptions" className="hover:text-amber">Renewal &amp; cancellation</Link></li>
+            <li><Link href="/shipping" className="hover:text-amber">Digital delivery</Link></li>
           </ul>
         </div>
       </div>
       <div className="border-t border-border">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-muted sm:flex-row sm:justify-between">
-          <span>© {new Date().getFullYear()} Benchline. All rights reserved.</span>
-          <span>Digital products for solo home-service operators.</span>
+          <span>© {new Date().getFullYear()} Kaivaryn LLC. Benchline is sold by Kaivaryn LLC.</span>
+          <span>Digital products. Prices in USD.</span>
         </div>
       </div>
     </footer>

@@ -1,0 +1,151 @@
+{
+  "generatedFrom": "content/products/core-kit (scripts/build-previews.mjs)",
+  "pricingCalculator": {
+    "file": "08-job-pricing-calculator.xlsx",
+    "tab": "Price a Job",
+    "system": "Job Pricing System",
+    "inputs": [
+      {
+        "label": "Estimated on-site hours (you)",
+        "value": "3.00"
+      },
+      {
+        "label": "Round-trip drive time (hours)",
+        "value": "0.50"
+      },
+      {
+        "label": "Materials / supplies for this job",
+        "value": "$20.00"
+      },
+      {
+        "label": "Disposal, dump, rental, or parking fees",
+        "value": "$0.00"
+      },
+      {
+        "label": "Round-trip miles",
+        "value": "16"
+      },
+      {
+        "label": "Vehicle cost per mile",
+        "value": "$0.70"
+      },
+      {
+        "label": "Card processing %",
+        "value": "2.9%"
+      },
+      {
+        "label": "Your minimum job price",
+        "value": "$125"
+      },
+      {
+        "label": "Price you're thinking of quoting",
+        "value": "$300.00"
+      }
+    ],
+    "outputs": [
+      {
+        "label": "PRICE NEEDED to hit your target",
+        "value": "$315.00"
+      },
+      {
+        "label": "Profit per hour of your time at the price you're thinking of",
+        "value": "$74.31"
+      },
+      {
+        "label": "Verdict",
+        "value": "Borderline — tighten scope or raise"
+      }
+    ]
+  },
+  "moneyDashboard": {
+    "file": "10-weekly-money-dashboard.xlsx",
+    "tab": "Dashboard",
+    "system": "Weekly Money Dashboard",
+    "rows": [
+      {
+        "label": "MONEY IN (jobs)",
+        "value": "$520.00"
+      },
+      {
+        "label": "Jobs completed",
+        "value": "2"
+      },
+      {
+        "label": "Average job price",
+        "value": "$260.00"
+      },
+      {
+        "label": "Job costs (materials + other job costs)",
+        "value": "$23.00"
+      },
+      {
+        "label": "Business expenses",
+        "value": "$105.00"
+      },
+      {
+        "label": "MONEY OUT (total)",
+        "value": "$128.00"
+      },
+      {
+        "label": "Profit before tax",
+        "value": "$392.00"
+      },
+      {
+        "label": "Set aside for taxes",
+        "value": "$98.00"
+      },
+      {
+        "label": "WHAT YOU ACTUALLY KEPT",
+        "value": "$294.00"
+      },
+      {
+        "label": "Hours worked on jobs (on-site + drive)",
+        "value": "9.60"
+      },
+      {
+        "label": "Job profitability: average profit per hour",
+        "value": "$51.77"
+      },
+      {
+        "label": "Jobs below your target profit per hour",
+        "value": "2"
+      }
+    ]
+  },
+  "followUp": {
+    "file": "09-lead-follow-up-system.md",
+    "system": "Lead-to-Customer Follow-Up System",
+    "lines": [
+      "**First response (new inquiry)**",
+      "> Hi [Name], this is [Your name] with [Business] — thanks for reaching out about [service]! To get you an accurate price, could you send [2–3 photos / the address / the size]? I can usually quote the same day.",
+      "",
+      "**Missed call**",
+      "> Hi, this is [Your name] with [Business] — sorry I missed your call, I'm on a job. What can I help with? Texting is the fastest way to reach me.",
+      "",
+      "**Estimate sent (same day)**",
+      "> Hi [Name], your estimate for [job] is here: [link]. Total $[__]. I have [day] open — reply YES and I'll book it."
+    ]
+  },
+  "checklist": {
+    "file": "03-job-checklist.md",
+    "system": "Job Execution Checklists",
+    "lines": [
+      "# Benchline On-Job Checklist",
+      "## Arrival → closeout (print for the truck)",
+      "",
+      "### Before you leave home / shop",
+      "- [ ] Confirm address + gate codes in writing",
+      "- [ ] Load tools / chemicals / PPE for THIS job only",
+      "- [ ] Charge phone + portable battery",
+      "- [ ] Estimate + change-order blank ready",
+      "- [ ] Payment method ready (reader / invoice link)",
+      "",
+      "### Arrival (first 5 minutes)",
+      "- [ ] Park considerately; note truck location for customer",
+      "- [ ] Introduce yourself; confirm decision-maker on site",
+      "- [ ] Walk scope vs estimate — photograph before",
+      "- [ ] Call out anything out of scope BEFORE starting",
+      "- [ ] Confirm pets / kids / alarms"
+    ]
+  }
+}

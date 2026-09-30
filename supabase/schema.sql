@@ -1,4 +1,6 @@
 -- Benchline schema — run in Supabase SQL editor
+-- After running this file, also run every file in supabase/migrations/ in order
+-- (catalog columns, Benchline Pro subscriptions, analytics_events).
 -- Idempotent-ish: uses IF NOT EXISTS where practical
 
 create extension if not exists "pgcrypto";

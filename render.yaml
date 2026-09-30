@@ -3,7 +3,7 @@ services:
     name: benchline
     runtime: node
     plan: free
-    buildCommand: npm ci && npm run pack:core-kit && npm run build
+    buildCommand: npm ci && npm run pack:kits && npm run build
     startCommand: npm run start
     healthCheckPath: /
     envVars:

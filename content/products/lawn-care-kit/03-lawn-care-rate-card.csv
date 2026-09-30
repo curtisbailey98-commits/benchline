@@ -1,0 +1,21 @@
+category,item,unit,low_usd,target_usd,notes
+mowing,"Mow/trim/edge/blow — under 5,000 sq ft lot",visit,35,50,Weekly price; biweekly +15–25%
+mowing,"Mow/trim/edge/blow — 5,000–10,000 sq ft",visit,45,65,
+mowing,"Mow/trim/edge/blow — 10,000–15,000 sq ft",visit,55,80,
+mowing,Mow/trim/edge/blow — 1/2 acre,visit,70,100,
+mowing,Mow/trim/edge/blow — 1 acre,visit,100,160,Needs a 48in+ mower to be profitable
+mowing,Overgrown first cut,percent,50,100,Percent on top of normal visit price
+cleanup,Spring cleanup (small yard),job,150,275,"Beds, sticks, first mow, edging"
+cleanup,Fall leaf cleanup (small yard),job,175,350,Price per visit; heavy trees = more visits
+cleanup,Leaf removal hourly,man-hour,50,75,Plus disposal
+beds,Bed weeding,man-hour,45,65,
+beds,Mulch install (labor),cubic yard,50,90,Plus mulch at cost + markup
+beds,Bed edging (spade/redefine),linear ft,1,2,
+shrubs,Hedge / shrub trimming,man-hour,50,75,Or per shrub $8–$20
+turf,"Core aeration — up to 5,000 sq ft",job,80,130,Rental cost if you don't own one
+turf,Overseeding (with aeration),"1,000 sq ft",15,30,Seed cost extra
+turf,Dethatching (small lawn),job,120,220,
+turf,Fertilizer / weed control,application,45,75,Many states require a pesticide applicator license — check before offering
+misc,Gutter cleaning — 1 story,job,100,175,
+misc,Storm cleanup / brush haul,man-hour,55,80,Plus dump fees
+policy,Rain delay,policy,0,0,Next dry day; no charge

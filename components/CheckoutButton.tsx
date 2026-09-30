@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { anonId, track } from "@/lib/track-client";
 import { useCart } from "./CartProvider";
 
 export function CheckoutButton() {
@@ -11,15 +12,20 @@ export function CheckoutButton() {
   async function checkout() {
     setError(null);
     setLoading(true);
+    for (const l of lines) track("checkout_click", { productId: l.productId });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lines }),
+        body: JSON.stringify({ lines, anonId: anonId() }),
       });
-      const data = (await res.json()) as { url?: string; error?: string };
+      const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
-        throw new Error(data.error || "Checkout failed");
+        throw new Error(
+          res.status === 503
+            ? "Checkout isn't open yet. Please check back soon or use the contact form."
+            : data.error || "Checkout failed"
+        );
       }
       window.location.href = data.url;
     } catch (e) {

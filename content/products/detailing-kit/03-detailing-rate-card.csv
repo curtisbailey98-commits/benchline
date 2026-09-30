@@ -1,0 +1,22 @@
+category,item,unit,low_usd,target_usd,notes
+package (sedan),Maintenance wash,vehicle,60,75,"Hand wash, wheels/tires, windows, quick vacuum, wipe-down"
+package (sedan),Interior detail,vehicle,150,185,"Full vacuum, plastics, leather/fabric clean, glass, door jambs"
+package (sedan),Exterior detail,vehicle,120,150,"Foam wash, decon, wheels/wells, spray sealant, tire dressing"
+package (sedan),Full detail,vehicle,235,295,Interior detail + exterior detail
+package (sedan),Paint enhancement,vehicle,360,450,Full detail exterior + 1-step polish + sealant
+package (sedan),Ceramic coating (trained only),vehicle,720,900,Decon + polish + coating install; price by product
+size multiplier,Small SUV / crossover,multiplier,,,Multiply package price by 1.15
+size multiplier,Mid-size SUV / crew-cab pickup,multiplier,,,Multiply package price by 1.25
+size multiplier,Full-size SUV / minivan / 3-row,multiplier,,,Multiply package price by 1.4
+size multiplier,Oversized / work van,multiplier,,,Multiply package price by 1.6
+add-on,Pet hair removal,each,45,60,
+add-on,Seat shampoo / hot-water extraction,each,70,90,
+add-on,Carpet & mat extraction,each,45,60,
+add-on,Leather clean & condition,each,45,60,
+add-on,Engine bay clean,each,45,60,
+add-on,Headlight restoration (pair),each,70,90,
+add-on,Odor treatment (enzyme + ozone),each,70,90,
+add-on,Clay bar + iron decon (add to wash),each,55,70,
+add-on,Sand / salt / heavy soil surcharge,each,40,50,
+policy,Travel fee beyond free radius,trip,15,35,Free radius typically 10–15 miles
+policy,Maintenance plan (every 2–4 weeks),visit,60,90,Only after an initial full or interior detail

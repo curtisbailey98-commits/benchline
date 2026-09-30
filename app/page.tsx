@@ -1,134 +1,238 @@
 import Link from "next/link";
-import { FAQ } from "@/components/FAQ";
-import { ProductCard } from "@/components/ProductCard";
-import { PRODUCTS, formatPrice } from "@/lib/products";
+import { PricingViewTracker } from "@/components/Analytics";
+import { BuyNowButton } from "@/components/BuyNowButton";
+import { FAQ, getFaqs } from "@/components/FAQ";
+import { FitSection } from "@/components/FitSection";
+import { HowItWorks } from "@/components/HowItWorks";
+import { Previews } from "@/components/Previews";
+import { PricingCards } from "@/components/PricingCards";
+import { SystemsGrid } from "@/components/SystemsGrid";
+import previews from "@/content/previews.json";
+import { formatPrice, getProductById } from "@/lib/products";
+import { TRADES } from "@/lib/trades";
+
+const PRO_EXAMPLES = [
+  "New pricing calculators",
+  "Seasonal pricing tools",
+  "Customer and upsell scripts",
+  "Quote templates",
+  "Expense and profit tools",
+  "Service-specific workflows",
+  "Customer-acquisition playbooks",
+  "Operational checklists",
+  "Updated versions of existing templates",
+];
+
+function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
+  return (
+    <div className="mb-10 max-w-2xl">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">{eyebrow}</p>
+      <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>
+      {sub ? <p className="mt-3 text-muted">{sub}</p> : null}
+    </div>
+  );
+}
 
 export default function HomePage() {
+  const core = getProductById("core-kit")!;
+  const pc = previews.pricingCalculator;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: getFaqs().map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.text },
+    })),
+  };
+
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--amber-soft),_transparent_55%)]" />
-        <div className="container-page relative grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+
+      {/* HERO */}
+      <section className="border-b border-border">
+        <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:py-24">
           <div>
-            <span className="badge">For solo home-service operators</span>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
-              The operating system for{" "}
-              <span className="text-amber">solo trades</span>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">
+              For solo home-service operators
+            </p>
+            <h1 className="mt-4 text-[2.1rem] font-semibold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.3rem]">
+              You started a service business to do the work—not paperwork.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-              You&apos;re excellent at the work. Benchline covers the paperwork —
-              intake, estimates, job closeout, Google reviews, and a weekly money
-              review — so jobs turn into a business you can run.
+              Benchline gives solo home-service operators the pricing tools, estimate templates,
+              follow-up systems, job checklists, review workflows, and money trackers needed to run the
+              business side professionally.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/shop/core-kit" className="btn btn-primary">
-                Get Core Kit — {formatPrice(19900)}
-              </Link>
-              <Link href="/shop" className="btn btn-secondary">
-                Browse shop
+            <p className="mt-4 max-w-xl text-sm text-foreground/80">
+              Built for cleaners, pressure washers, lawn-care operators, mobile detailers, handymen, and
+              similar businesses.
+            </p>
+            <div className="mt-8 flex max-w-md flex-col gap-3 sm:flex-row sm:items-start">
+              <div className="sm:flex-1">
+                <BuyNowButton productId={core.id} valueCents={core.priceCents} label={`Get Benchline — ${formatPrice(core.priceCents)}`} />
+              </div>
+              <Link href="#systems" className="btn btn-secondary">
+                See what&apos;s inside
               </Link>
             </div>
-            <ul className="mt-10 grid gap-3 text-sm text-muted sm:grid-cols-2">
-              {[
-                "Original scripts & SOPs — not recycled fluff",
-                "Notion-ready Markdown + printable PDFs",
-                "Instant download after Stripe checkout",
-                "No fake testimonials or vanity counters",
-              ].map((t) => (
-                <li key={t} className="flex gap-2">
-                  <span className="text-amber">✓</span>
-                  <span>{t}</span>
+            <p className="mt-3 text-sm text-muted">
+              One purchase. Instant access. No complicated software to learn.
+            </p>
+          </div>
+
+          <figure className="card !p-0 overflow-hidden">
+            <figcaption className="flex items-center justify-between border-b border-border px-5 py-3">
+              <span className="text-sm font-semibold">Price a Job — before you say yes</span>
+              <span className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted">XLSX</span>
+            </figcaption>
+            <table className="w-full text-sm">
+              <tbody>
+                {pc.inputs.slice(0, 3).map((r) => (
+                  <tr key={r.label} className="border-b border-border/60">
+                    <td className="px-5 py-2 text-muted">{r.label}</td>
+                    <td className="bg-amber/10 px-5 py-2 text-right font-mono">{r.value}</td>
+                  </tr>
+                ))}
+                {pc.outputs.map((r) => (
+                  <tr key={r.label} className="border-b border-border/60 last:border-0">
+                    <td className="px-5 py-2 font-medium">{r.label}</td>
+                    <td className={`px-5 py-2 text-right font-semibold text-amber ${/^[$\d]/.test(r.value) ? "font-mono" : "text-sm"}`}>{r.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="border-t border-border px-5 py-2.5 text-xs text-muted">
+              Real output from the Core Kit pricing calculator, using its example job.
+            </p>
+          </figure>
+        </div>
+      </section>
+
+      {/* 7 SYSTEMS */}
+      <section className="container-page scroll-mt-20 py-16 sm:py-20" id="systems">
+        <SectionHead
+          eyebrow="The Core Kit"
+          title="Seven business systems, ready to use"
+          sub="Each system is a set of real files — guides, scripts, templates, and spreadsheets — that handle one part of running the business."
+        />
+        <SystemsGrid />
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="scroll-mt-20 border-y border-border bg-bg-elevated py-16 sm:py-20" id="how-it-works">
+        <div className="container-page">
+          <SectionHead
+            eyebrow="How Benchline works"
+            title="From first call to money in the bank"
+            sub="Every job follows the same path. Benchline gives you a system for each step."
+          />
+          <HowItWorks />
+        </div>
+      </section>
+
+      {/* PREVIEWS */}
+      <section className="container-page scroll-mt-20 py-16 sm:py-20" id="previews">
+        <SectionHead
+          eyebrow="Look inside"
+          title="See the actual files"
+          sub="These are excerpts pulled from the Core Kit files themselves — not mockups."
+        />
+        <Previews />
+      </section>
+
+      {/* FIT */}
+      <section className="scroll-mt-20 border-y border-border bg-bg-elevated py-16 sm:py-20" id="fit">
+        <div className="container-page">
+          <SectionHead eyebrow="Honest fit check" title="Is Benchline for me?" />
+          <FitSection />
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="container-page py-16 sm:py-20">
+        <PricingViewTracker id="pricing">
+          <SectionHead
+            eyebrow="Pricing"
+            title="Pick how you want to start"
+            sub="One-time purchases, plus an optional monthly membership. No hidden fees."
+          />
+          <PricingCards />
+        </PricingViewTracker>
+      </section>
+
+      {/* PRO */}
+      <section className="scroll-mt-20 border-y border-border bg-bg-elevated py-16 sm:py-20" id="pro">
+        <div className="container-page grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber">Benchline Pro</p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight">
+              Benchline keeps getting smarter as your business grows.
+            </h2>
+            <p className="mt-4 text-muted">
+              Pro members get the Pro Library — today that&apos;s a seasonal pricing planner spreadsheet and an
+              upsell &amp; add-on script library — and every tool we add to it while their membership is active.
+            </p>
+            <p className="mt-4 text-sm text-muted">
+              $29/month, renews monthly until you cancel. Cancel anytime from your account.
+            </p>
+            <Link href="/shop/updates" className="btn btn-secondary mt-6">
+              About Benchline Pro
+            </Link>
+          </div>
+          <div className="card">
+            <p className="text-sm font-semibold">Examples of what we plan to add</p>
+            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              {PRO_EXAMPLES.map((e) => (
+                <li key={e} className="flex gap-2 text-sm text-muted">
+                  <span className="text-amber" aria-hidden>+</span>
+                  {e}
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="card relative border-amber/25 bg-gradient-to-br from-bg-card to-bg-elevated">
-            <p className="text-xs font-semibold uppercase tracking-widest text-amber">
-              What you install
+            <p className="mt-4 text-xs text-muted">
+              Planned, not scheduled: we don&apos;t promise a specific file on a specific date.
             </p>
-            <ol className="mt-6 space-y-4">
-              {[
-                ["Intake", "Qualify jobs in under 4 minutes"],
-                ["Estimate", "Quotes with margin guardrails"],
-                ["Job checklist", "Arrival → closeout on paper"],
-                ["Follow-up + reviews", "SMS scripts + Google ask flow"],
-                ["Weekly money", "30-minute cash in / cash out SOP"],
-              ].map(([title, desc], i) => (
-                <li key={title} className="flex gap-4">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-soft text-sm font-semibold text-amber">
-                    {i + 1}
-                  </span>
-                  <div>
-                    <p className="font-medium">{title}</p>
-                    <p className="text-sm text-muted">{desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </section>
 
-      <section className="container-page py-20" id="products">
-        <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight">Products</h2>
-            <p className="mt-2 text-muted">One-time kit, monthly drops, or the bundle that saves money.</p>
-          </div>
-          <Link href="/shop" className="text-sm font-medium text-amber hover:underline">
-            View all →
-          </Link>
-        </div>
-        <div className="grid gap-6 md:grid-cols-3">
-          {PRODUCTS.map((p) => (
-            <ProductCard key={p.id} product={p} />
+      {/* TRADE KITS (secondary) */}
+      <section className="container-page py-16 sm:py-20" id="trades">
+        <SectionHead
+          eyebrow="Optional add-on"
+          title="Want it written for your trade?"
+          sub="Trade Kits add trade-specific pricing calculators, service agreements, and checklists on top of the Core Kit."
+        />
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {TRADES.map((t) => (
+            <li key={t.id}>
+              <Link href={`/for/${t.landingSlug}`} className="card flex h-full items-center justify-between gap-3 !py-4 hover:border-amber/60">
+                <span className="font-medium">{t.name}</span>
+                <span className="text-amber" aria-hidden>→</span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
-      <section className="border-y border-border bg-bg-elevated py-20" id="how-it-works">
-        <div className="container-page">
-          <h2 className="text-3xl font-semibold tracking-tight">How it works</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                t: "1. Buy the kit",
-                d: "Checkout with Stripe. Core Kit is a one-time purchase; Updates is monthly; Bundle pairs both.",
-              },
-              {
-                t: "2. Download & customize",
-                d: "Auth-gated ZIP lands in your account. Paste into Notion, print checklists, edit the CSV for your trade.",
-              },
-              {
-                t: "3. Run jobs with systems",
-                d: "Use intake → estimate → checklist → SMS → review ask → weekly money. Optional Updates keep the playbooks fresh.",
-              },
-            ].map((s) => (
-              <div key={s.t} className="card">
-                <h3 className="font-semibold text-amber">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container-page py-20" id="faq">
-        <h2 className="mb-8 text-3xl font-semibold tracking-tight">FAQ</h2>
+      {/* FAQ */}
+      <section className="container-page scroll-mt-20 pb-16 sm:pb-20" id="faq">
+        <SectionHead eyebrow="Questions" title="FAQ" />
         <FAQ />
       </section>
 
-      <section className="container-page pb-24">
-        <div className="card flex flex-col items-start gap-6 border-amber/30 bg-amber-soft/40 sm:flex-row sm:items-center sm:justify-between">
+      {/* FINAL CTA */}
+      <section className="container-page pb-8">
+        <div className="card flex flex-col items-start gap-6 border-amber/50 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-2xl font-semibold">Ready to stop improvising paperwork?</h2>
-            <p className="mt-2 text-muted">
-              Start with Core Kit — install this week, not someday.
-            </p>
+            <h2 className="text-2xl font-semibold">Get the business side handled this week.</h2>
+            <p className="mt-2 text-muted">One purchase. Instant access. No complicated software to learn.</p>
           </div>
-          <Link href="/shop/core-kit" className="btn btn-primary shrink-0">
-            Get Core Kit
-          </Link>
+          <div className="w-full sm:w-auto">
+            <BuyNowButton productId={core.id} valueCents={core.priceCents} label={`Get Benchline — ${formatPrice(core.priceCents)}`} className="btn btn-primary w-full sm:w-auto" />
+          </div>
         </div>
       </section>
     </>

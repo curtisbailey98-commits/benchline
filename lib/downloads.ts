@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
+import { KITS } from "./kits";
 
 const DEFAULT_TTL_SECONDS = 60 * 60 * 24; // 24h
 
@@ -43,9 +44,11 @@ export function verifyDownloadToken(
   }
 }
 
-export const DOWNLOADABLE_PRODUCTS: Record<string, { dir: string; zipName: string }> = {
-  "core-kit": {
-    dir: "content/products/core-kit",
-    zipName: "benchline-core-kit.zip",
-  },
-};
+/** Download key → source dir + gated ZIP name (ZIPs live in private/downloads/, never public/). */
+export const DOWNLOADABLE_PRODUCTS: Record<string, { dir: string; zipName: string; name: string }> =
+  Object.fromEntries(
+    Object.values(KITS).map((kit) => [
+      kit.key,
+      { dir: `content/products/${kit.key}`, zipName: kit.zipName, name: kit.name },
+    ])
+  );

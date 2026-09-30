@@ -6,10 +6,10 @@ export default function PrivacyPage() {
   return (
     <div className="container-page prose-bl py-14">
       <h1 className="text-3xl font-semibold text-foreground">Privacy policy</h1>
-      <p className="mt-2 text-sm text-muted">Last updated: September 27, 2026</p>
+      <p className="mt-2 text-sm text-muted">Last updated: September 30, 2026</p>
       <p className="mt-6">
-        Benchline (&quot;we&quot;) sells digital products to solo home-service operators.
-        This policy explains what we collect and why.
+        Benchline is operated by Kaivaryn LLC (&quot;we&quot;), which sells Benchline digital products to solo
+        home-service operators. This policy explains what we collect and why.
       </p>
       <h2>What we collect</h2>
       <ul>
@@ -18,14 +18,19 @@ export default function PrivacyPage() {
         <li>Support messages you send through our contact form</li>
         <li>Optional cart-reminder email if you consent on the cart page</li>
         <li>Basic technical logs needed to operate the site</li>
+        <li>
+          First-party usage events (page viewed, pricing seen, checkout clicked/started, purchase) stored in our own
+          database with a random per-tab id — no cookies, no names or emails, no IP addresses, and no third-party
+          advertising or analytics trackers
+        </li>
       </ul>
       <h2>How we use data</h2>
       <ul>
         <li>Fulfill purchases and gate downloads to the buying account</li>
-        <li>Provide membership / Updates access</li>
+        <li>Provide Benchline Pro membership access and show its status in your account</li>
         <li>Respond to support requests</li>
         <li>Send cart reminders only with explicit consent</li>
-        <li>Operate founder analytics from real order aggregates</li>
+        <li>Understand, in aggregate, how visitors move from the homepage to checkout, and operate founder reporting from real order data</li>
       </ul>
       <h2>Processors</h2>
       <p>

@@ -6,8 +6,9 @@ import { LogoMark } from "./Logo";
 import { useCart } from "./CartProvider";
 
 const NAV = [
-  { href: "/shop", label: "Shop" },
   { href: "/#how-it-works", label: "How it works" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/shop", label: "Shop" },
   { href: "/#faq", label: "FAQ" },
   { href: "/account", label: "Account" },
 ];
@@ -17,7 +18,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-bg/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-bg">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
           <LogoMark />

@@ -1,0 +1,26 @@
+category,item,unit,low_usd,target_usd,notes
+recurring,Standard clean — 1 bed / 1 bath,visit,100,140,Recurring price after first visit
+recurring,Standard clean — 2 bed / 2 bath,visit,130,180,Most common quote; adjust for sq ft and clutter
+recurring,Standard clean — 3 bed / 2 bath,visit,160,220,
+recurring,Standard clean — 4 bed / 3 bath,visit,200,280,
+first visit,Deep clean — 2 bed / 2 bath,job,250,350,Required first visit before recurring service
+first visit,Deep clean — 3 bed / 2 bath,job,300,425,
+first visit,Deep clean — 4 bed / 3 bath,job,375,525,
+move-out,Move-out / move-in clean (empty home),sq ft,0.2,0.35,See 11-move-out-cleaning-pricing.md
+move-out,Move-out minimum,job,250,325,Never quote a move-out below this
+hourly,"Hourly rate (solo, after included scope)",hour,45,65,Use for clutter-heavy or undefined scope
+add-on,Inside oven,each,30,50,~30–45 min
+add-on,Inside refrigerator,each,30,50,Ask client to empty it first
+add-on,Inside kitchen cabinets (empty),job,50,80,
+add-on,Interior windows (glass + sills),window,5,8,Tracks extra
+add-on,Window tracks,window,3,5,
+add-on,Blinds dusted/wiped,blind,5,10,
+add-on,Baseboards hand-wiped (whole home),job,40,75,Included in deep clean
+add-on,Wall spot-cleaning,room,10,20,
+add-on,"Laundry — wash, dry, fold",load,20,30,
+add-on,Change bed linens,bed,8,15,
+add-on,Garage sweep,job,35,60,
+add-on,Balcony / patio sweep and wipe,job,25,45,
+surcharge,Pet hair (heavy shedding),visit,15,30,Or +10% on the visit
+surcharge,Same-day / next-day booking,percent,20,30,Percent of the job
+policy,Lockout / late cancellation (under 24h),flat,50,75,Or 50% of the visit price
