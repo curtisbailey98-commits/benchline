@@ -261,20 +261,22 @@ function invoiceSubscriptionId(invoice: Stripe.Invoice): string | null {
 }
 
 /** Full refund → order marked refunded, which revokes downloads and bundle Pro access. */
-async function handleChargeRefunded(charge: Stripe.Charge) {
-  if (!hasSupabaseAdmin()) return;
+async function handleChargeRefunded(charge: Stripe.Charge): Promise<boolean> {
+  if (!hasSupabaseAdmin()) return false;
   if (!charge.refunded) {
     console.info(`Partial refund on ${charge.id}; access left unchanged`);
-    return;
+    return false;
   }
   const paymentIntent =
     typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent?.id;
-  if (!paymentIntent) return;
-  const { error } = await createAdminClient()
+  if (!paymentIntent) return false;
+  const { data, error } = await createAdminClient()
     .from("orders")
     .update({ status: "refunded" })
-    .eq("stripe_payment_intent_id", paymentIntent);
+    .eq("stripe_payment_intent_id", paymentIntent)
+    .select("id");
   if (error) throw error;
+  return (data?.length ?? 0) > 0;
 }
 
 /**
@@ -334,28 +336,45 @@ export async function POST(request: Request) {
   }
 
   try {
+    // The Stripe account is shared with other Kaivaryn LLC products, so this endpoint also
+    // receives their events. Only Benchline events are handled or recorded; everything else
+    // is acknowledged with a 2xx and no database writes.
+    let relevant = false;
     switch (event.type) {
       case "checkout.session.completed":
-      case "checkout.session.async_payment_succeeded":
-        await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+      case "checkout.session.async_payment_succeeded": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        relevant = isBenchlineSession(session);
+        if (relevant) await handleCheckoutCompleted(session);
         break;
+      }
       case "customer.subscription.created":
       case "customer.subscription.updated":
-      case "customer.subscription.deleted":
-        await upsertSubscription(event.data.object as Stripe.Subscription);
+      case "customer.subscription.deleted": {
+        const sub = event.data.object as Stripe.Subscription;
+        relevant = isBenchlineSubscription(sub);
+        if (relevant) await upsertSubscription(sub);
         break;
+      }
       case "invoice.paid":
       case "invoice.payment_failed": {
         // Re-read the subscription so status (active / past_due) and period end stay current.
         const subId = invoiceSubscriptionId(event.data.object as Stripe.Invoice);
-        if (subId) await upsertSubscription(await stripe.subscriptions.retrieve(subId));
+        if (subId) {
+          const sub = await stripe.subscriptions.retrieve(subId);
+          relevant = isBenchlineSubscription(sub);
+          if (relevant) await upsertSubscription(sub);
+        }
         break;
       }
       case "charge.refunded":
-        await handleChargeRefunded(event.data.object as Stripe.Charge);
+        relevant = await handleChargeRefunded(event.data.object as Stripe.Charge);
         break;
       default:
         break;
+    }
+    if (!relevant) {
+      return NextResponse.json({ received: true, ignored: true });
     }
     await markProcessed(event.id, event.type, event.data.object);
   } catch (err) {
